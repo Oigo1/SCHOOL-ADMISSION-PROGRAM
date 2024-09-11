@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Fee</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Students by Grade</h2>
+            <ul>
+                {% for class_year, students in students_by_class.items %}
+                <li><strong>Grade {{ class_year }}:</strong>
+                    <ul>
+                        {% for student in students %}
+                        <li><a href="{% url 'student_detail' student.id %}">{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'home' %}" class="receipt-btnn">Home</a>
+
+    </div>
+</body>
+</html>

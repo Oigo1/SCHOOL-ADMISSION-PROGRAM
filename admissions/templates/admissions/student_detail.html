@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Student Details</h2>
+
+        <div class="details-box">
+            <h3>Personal Information</h3>
+            <p><strong>Name:</strong> {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</p>
+            <p><strong>Age:</strong> {{ student.age }}</p>
+            <p><strong>Class Year:</strong> {{ student.class_year }}</p>
+        </div>
+
+        <div class="details-box">
+            <h3>Fee Information</h3>
+            <p><strong>Total Fee:</strong> {{ fee.total_fee }}</p>
+            <p><strong>Amount Paid:</strong> {{ fee.amount_paid }}</p>
+            <p><strong>Fee Balance:</strong> {{ fee.fee_balance }}</p>
+
+            <!-- Display fee balance and button if the fee is not cleared -->
+            {% if fee.fee_balance > 0 %}
+                <p>Fee Balance: {{ fee.fee_balance }}</p>
+                <a href="{% url 'pay_fee' student.id %}">Clear Balance</a>
+            {% else %}
+                <p>Fee Cleared</p>
+            {% endif %}
+
+        </div>
+
+        <div class="details-box">
+            <h3>Activity Status</h3>
+            <ul>
+                <li><span>Bus Access:</span> {{ activity_status.bus }}</li>
+                <li><span>Library Access:</span> {{ activity_status.library }}</li>
+                <li><span>Lunch Access:</span> {{ activity_status.lunch }}</li>
+                <li><span>Swimming Access:</span> {{ activity_status.swimming }}</li>
+                <li><span>Exams Eligible:</span> {{ activity_status.exams }}</li>
+            </ul>
+        </div>
+
+        <div class="receipt-box">
+            <h3>Receipt</h3>
+            <p>Thank you for paying the school fees.</p>
+            <p><strong>Amount Paid:</strong> {{ fee.amount_paid }}</p>
+            <p><strong>Fee Balance:</strong> {{ fee.fee_balance }}</p>
+            <a href="#" class="receipt-btn">Download Receipt</a><br>
+            <a href="{% url 'home' %}" class="receipt-btnn">Home</a>
+        </div>
+    </div>
+</body>
+</html>

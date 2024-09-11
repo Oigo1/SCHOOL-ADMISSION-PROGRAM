@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Admission Program</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the School Admission Program</h1>
+        <p>Please choose an option below:</p>
+        <ul>
+            <li><a href="{% url 'register_student' %}">Register a Student</a></li>
+            <li><a href="{% url 'student_list' %}">View All Students by Grade</a></li>
+            {% comment %} <li><a href="{% url 'pay_fee' student_id %}">Pay Fee</a></li> {% endcomment %}
+        </ul>
+
+    </div>
+</body>
+</html>
